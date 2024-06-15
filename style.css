@@ -1,0 +1,34 @@
+html, body {
+    background-color: PeachPuff;
+}
+
+#farm {
+    position: fixed;
+    top: 30%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    border: 5px inset YellowGreen;
+    display: None;
+    grid-template-columns: '';
+    background-color: white;
+    border-radius: 5px;
+    transition: 0.5s;
+}
+
+.plot {
+    width: 100px;
+    height: 100px;
+    background-color: PaleGreen;
+    border: 0.1px groove SeaGreen;
+    opacity: 0.8;
+    transition: 0.5s;
+}
+
+.plot:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.plot:active {
+    transform: scale(1.1);
+}
