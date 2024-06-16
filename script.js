@@ -5,9 +5,10 @@ var seedGain = 5;
 var growing;
 var bag;
 var firstSeed = true;
+var farm_upgrade_cost = 100;
 
 var user = {
-    "money": 8.25,
+    "money": 800.25,
     "rank": 1,
     "xp": 0,
     "max_xp": 20
@@ -26,6 +27,7 @@ function updateRank() {
         user.max_xp = user.max_xp * 2;
         user.xp = 0;
         user.rank += 1;
+        loadShop()
     }
     rankTxt.innerHTML = "Rank " + user.rank;
 
@@ -71,15 +73,41 @@ function buySeed(seed) {
         console.log("Too Poor");
     }
 }
+function loadUpgrades() {
+    var upgrades = document.getElementById("upgrades");
+    upgrades.innerHTML = "";
+    shop.innerHTML += '<button onclick="upgradeFarm()">Upgrade Farm $' + farm_upgrade_cost + '</button>';
+}
+
+function upgradeFarm() {
+    if (user.money >= farm_upgrade_cost) {
+        if (window.confirm("Do you really want to leave?")) {
+            user.money -= farm_upgrade_cost;
+            farmLvl += 1;
+            farm_upgrade_cost = farm_upgrade_cost * 5;
+
+            loadFarm()
+            updateMoney()
+        }
+    }
+
+}
 
 function loadShop() {
+    var shop = document.getElementById("shop");
+    shop.innerHTML = "";
     for (i = 0; i < seeds.length; i++) {
-        document.body.innerHTML += '<br>';
-        document.body.innerHTML += '<button onclick="buySeed(' + i + ')">' + seeds[i].name + ' x' + seedGain + ' - $' + seeds[i].cost + '</button>';
+        if (user.rank >= seeds[i].rankReq) {
+            shop.innerHTML += '<br>';
+            shop.innerHTML += '<button onclick="buySeed(' + i + ')">' + seeds[i].name + ' x' + seedGain + ' - $' + seeds[i].cost + '</button>';
+        }
     }
 }
 
 function loadFarm() {
+    document.getElementById("startBtn").style.display = "None";
+    document.getElementById("money").style.display = "Block";
+    document.getElementById("rank").style.display = "Block";
     var farm = document.getElementById("farm");
 
     farm.style.display = "Inline-Grid";
@@ -114,7 +142,7 @@ function loadFarm() {
     },150)
 
     loadShop()
-
+    loadUpgrades()
     updateBag()
     updateRank()
     updateMoney();

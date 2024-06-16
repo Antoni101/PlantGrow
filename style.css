@@ -2,13 +2,39 @@ html, body {
     background-color: BurlyWood;
 }
 
+#startBtn {
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 600;
+    font-size: 100px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 10%;
+    border: None;
+    border-radius: 10px;
+    opacity: 0.8;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+
+#startBtn:hover {
+    font-size: 110px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    opacity: 1;
+}
+
+#startBtn:active {
+    font-size: 105px;
+}
 
 #money {
     font-family: "Fira Sans", sans-serif;
-    font-weight: 600;
+    font-weight: 400;
     font-size: 20px;
     font-style: normal;
     text-align: center;
+    display: None;
 }
 
 #rank {
@@ -17,6 +43,7 @@ html, body {
     font-size: 15px;
     font-style: normal;
     text-align: center;
+    display: None;
 }
 
 #farm {
