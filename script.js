@@ -8,7 +8,7 @@ var firstSeed = true;
 var farm_upgrade_cost = 100;
 
 var user = {
-    "money": 800.25,
+    "money": 8.25,
     "rank": 1,
     "xp": 0,
     "max_xp": 20
