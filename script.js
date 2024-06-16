@@ -7,7 +7,7 @@ var bag;
 var firstSeed = true;
 
 var user = {
-    "money": 80.25,
+    "money": 8.25,
     "rank": 1,
     "xp": 0,
     "max_xp": 20
@@ -43,6 +43,9 @@ function updateBag() {
     bag.innerHTML = "";
     for (i = 0; i < seeds.length; i++) {
         bag.innerHTML += '<p class="seeds" id="seed' + i + '" onclick="equipSeed(' + i + ')">' + seeds[i].icon + "|" + seeds[i].quantity + '</p>';
+        if (seeds[i].equipped == true) {
+            document.getElementById('seed' + i).style.color = "Yellow";
+        }
     }
 }
 
@@ -152,7 +155,10 @@ function selectPlot(plotNum) {
 
             break;
         }
-    } //🥔
+        else {
+            console.log(farmArray[plotNum].speed + " seconds left until harvest")
+        }
+    } 
 }
 
 function farmGrow() {
