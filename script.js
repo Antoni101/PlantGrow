@@ -5,7 +5,7 @@ var seedGain = 5;
 var growing;
 var bag;
 var firstSeed = true;
-var farm_upgrade_cost = 100;
+var farm_upgrade_cost = 50;
 
 var user = {
     "money": 8.25,
@@ -76,12 +76,12 @@ function buySeed(seed) {
 function loadUpgrades() {
     var upgrades = document.getElementById("upgrades");
     upgrades.innerHTML = "";
-    shop.innerHTML += '<button onclick="upgradeFarm()">Upgrade Farm $' + farm_upgrade_cost + '</button>';
+    upgrades.innerHTML += '<button onclick="upgradeFarm()">Upgrade Farm $' + farm_upgrade_cost + '</button>';
 }
 
 function upgradeFarm() {
     if (user.money >= farm_upgrade_cost) {
-        if (window.confirm("Do you really want to leave?")) {
+        if (window.confirm("Warning, Upgrading Farm wipes all seeds from the farm, Proceed?")) {
             user.money -= farm_upgrade_cost;
             farmLvl += 1;
             farm_upgrade_cost = farm_upgrade_cost * 5;

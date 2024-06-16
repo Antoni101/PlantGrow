@@ -24,8 +24,8 @@ const carrot = {
 
 const corn = {
     "name": "Corn",
-    "value": 35,
-    "speed": 40, // 40 Seconds
+    "value": 100,
+    "speed": 50, // 40 Seconds
     "expGain": 15,
     "equipped": false,
     "quantity": 0,
@@ -37,7 +37,7 @@ const corn = {
 const strawberry = {
     "name": "Strawberry",
     "value": 50,
-    "speed": 30, // 30 Seconds (0.5 Minute)
+    "speed": 25, // 30 Seconds (0.5 Minute)
     "expGain": 30,
     "equipped": false,
     "quantity": 0,
