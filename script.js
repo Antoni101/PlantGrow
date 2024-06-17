@@ -50,9 +50,23 @@ function updateBag() {
     bag = document.getElementById("seedBag");
     bag.innerHTML = "";
     for (i = 0; i < seeds.length; i++) {
-        bag.innerHTML += '<p class="seeds" id="seed' + i + '" onclick="equipSeed(' + i + ')">' + seeds[i].icon + "|" + seeds[i].quantity + '</p>';
+        bag.innerHTML += '<p class="seeds" id="seed' + i + '" onclick="equipSeed(' + i + ')">' + seeds[i].icon + "<font size='5'> x" + seeds[i].quantity + '</font></p>';
+        if (seeds[i].quantity > 0) {
+            document.getElementById('seed' + i).style.display = "Inline-Block";
+        }
+        else {
+            document.getElementById('seed' + i).style.display = "None";
+        }
+
         if (seeds[i].equipped == true) {
-            document.getElementById('seed' + i).style.color = "Yellow";
+            document.getElementById('seed' + i).style.color = "Gold";
+            document.getElementById('seed' + i).style.opacity = "0.9";
+            document.getElementById('seed' + i).style.transform = "scale(1.2)";
+        }
+        else {
+            document.getElementById('seed' + i).style.color = "Black";
+            document.getElementById('seed' + i).style.opacity = "0.7";
+            document.getElementById('seed' + i).style.transform = "scale(1.0)";
         }
     }
 }
@@ -61,9 +75,13 @@ function equipSeed(seed) {
     for (i = 0; i < seeds.length; i++) {
         seeds[i].equipped = false;  
         document.getElementById('seed' + i).style.color = "Black";
+        document.getElementById('seed' + i).style.opacity = "0.7";
+        document.getElementById('seed' + i).style.transform = "scale(1.0)";
     }
     seeds[seed].equipped = true;
-    document.getElementById('seed' + seed).style.color = "Yellow";
+    document.getElementById('seed' + seed).style.color = "Gold";
+    document.getElementById('seed' + seed).style.opacity = "0.9";
+    document.getElementById('seed' + seed).style.transform = "scale(1.2)"
 }
 
 function buySeed(seed) {
@@ -105,7 +123,7 @@ function loadShop() {
     for (i = 0; i < seeds.length; i++) {
         if (user.rank >= seeds[i].rankReq) {
             shop.innerHTML += '<br>';
-            shop.innerHTML += '<button onclick="buySeed(' + i + ')">' + seeds[i].name + ' x' + seedGain + ' - $' + seeds[i].cost + '</button>';
+            shop.innerHTML += '<button onclick="buySeed(' + i + ')">' + seeds[i].name + ' (x' + seedGain + ') | $' + seeds[i].cost + '</button>';
         }
     }
 }
@@ -114,6 +132,7 @@ function loadFarm() {
     document.getElementById("startBtn").style.display = "None";
     document.getElementById("money").style.display = "Block";
     document.getElementById("rank").style.display = "Block";
+    document.getElementById("seedBag").style.display = "Inline-Block";
     var farm = document.getElementById("farm");
 
     farm.style.display = "Inline-Grid";
