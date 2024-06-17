@@ -1,7 +1,7 @@
 const potato = {
     "name": "Potato",
     "value": 2,
-    "speed": 10, //10 Seconds
+    "speed": 5, //5 Seconds
     "expGain": 5,
     "equipped": false,
     "quantity": 0,
@@ -12,20 +12,20 @@ const potato = {
 
 const carrot = {
     "name": "Carrot",
-    "value": 5,
-    "speed": 6, //6 Seconds
+    "value": 4,
+    "speed": 3, //3 Seconds
     "expGain": 7,
     "equipped": false,
     "quantity": 0,
-    "rankReq": 2,
+    "rankReq": 1,
     "cost": 10,
     "icon": "🥕"
 };
 
 const corn = {
     "name": "Corn",
-    "value": 50,
-    "speed": 30, // 30 Seconds
+    "value": 10,
+    "speed": 15, // 15 Seconds
     "expGain": 15,
     "equipped": false,
     "quantity": 0,
@@ -41,7 +41,7 @@ const strawberry = {
     "expGain": 30,
     "equipped": false,
     "quantity": 0,
-    "rankReq": 3,
+    "rankReq": 2,
     "cost": 25,
     "icon": "🍓"
 };
@@ -53,7 +53,7 @@ const pepper = {
     "expGain": 30,
     "equipped": false,
     "quantity": 0,
-    "rankReq": 4,
+    "rankReq": 3,
     "cost": 50,
     "icon": "🌶️"
 };
@@ -65,7 +65,7 @@ const tomato = {
     "expGain": 30,
     "equipped": false,
     "quantity": 0,
-    "rankReq": 4,
+    "rankReq": 3,
     "cost": 80,
     "icon": "🍅"
 };
@@ -89,7 +89,7 @@ const melon = {
     "expGain": 70,
     "equipped": false,
     "quantity": 0,
-    "rankReq": 5,
+    "rankReq": 4,
     "cost": 200,
     "icon": "🍉"
 };
@@ -101,7 +101,7 @@ const avocado = {
     "expGain": 100,
     "equipped": false,
     "quantity": 0,
-    "rankReq": 6,
+    "rankReq": 4,
     "cost": 1000,
     "icon": "🥑"
 };
@@ -113,7 +113,7 @@ const pear = {
     "expGain": 200,
     "equipped": false,
     "quantity": 0,
-    "rankReq": 6,
+    "rankReq": 5,
     "cost": 600,
     "icon": "🍐"
 };

@@ -12,7 +12,7 @@ button {
     border-radius: 5px;
     transition: 0.2s;
     height: 75px;
-    width: 275px;
+    width: 400px;
     opacity: 0.7;
     cursor: pointer;
 }
@@ -81,7 +81,7 @@ button:active {
     border: 5px inset YellowGreen;
     display: None;
     grid-template-columns: '';
-    background-color: white;
+    background-color: Wheat;
     border-radius: 5px;
     transition: 0.5s;
 }
@@ -96,7 +96,7 @@ button:active {
     border: None;
     background-color: Tan;
     overflow: auto;
-    left: 2%;
+    left: 1%;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
@@ -146,4 +146,9 @@ button:active {
     position: absolute;
     top: 10%;
     left: 75%;
+}
+
+#collectArea {
+    transition: 0.2s;
+    opacity: 0.7;
 }

@@ -4,8 +4,10 @@ var farmArray = [];
 var seedGain = 5;
 var growing;
 var bag;
-var firstSeed = true;
 var farm_upgrade_cost = 50;
+var farm_speed = 1;
+var farm_speed_cost = 100;
+var farmSize = 100;
 
 var user = {
     "money": 8.25,
@@ -43,7 +45,7 @@ function updateRank() {
 function updateMoney() {
     var moneyTxt = document.getElementById("money");
 
-    moneyTxt.innerHTML = "💰$" + user.money;
+    moneyTxt.innerHTML = "💰$" + user.money.toFixed(2);
 }
 
 function updateBag() {
@@ -100,7 +102,19 @@ function buySeed(seed) {
 function loadUpgrades() {
     var upgrades = document.getElementById("upgrades");
     upgrades.innerHTML = "";
-    upgrades.innerHTML += '<button onclick="upgradeFarm()">Upgrade Farm $' + farm_upgrade_cost + '</button>';
+    upgrades.innerHTML += '<br><button onclick="upgradeFarm()">Upgrade Farm Size $' + farm_upgrade_cost + '</button>';
+    upgrades.innerHTML += '<br><button onclick="upgradeSpeed()">Upgrade Farm Speed $' + farm_speed_cost + '</button>';
+}
+
+function upgradeSpeed() {
+    if (window.confirm("Warning, Upgrading the Farm wipes all seeds from the farm, Proceed?")) {
+        user.money -= farm_speed_cost;
+        farm_speed += 0.5;
+        farm_speed_cost = farm_speed_cost * 5;
+
+        loadFarm()
+        updateMoney()
+    }
 }
 
 function upgradeFarm() {
@@ -109,6 +123,7 @@ function upgradeFarm() {
             user.money -= farm_upgrade_cost;
             farmLvl += 1;
             farm_upgrade_cost = farm_upgrade_cost * 5;
+            farmSize -= 5;
 
             loadFarm()
             updateMoney()
@@ -123,18 +138,22 @@ function loadShop() {
     for (i = 0; i < seeds.length; i++) {
         if (user.rank >= seeds[i].rankReq) {
             shop.innerHTML += '<br>';
-            shop.innerHTML += '<button onclick="buySeed(' + i + ')">' + seeds[i].name + ' (x' + seedGain + ') | $' + seeds[i].cost + '</button>';
+            shop.innerHTML += '<button onclick="buySeed(' + i + ')">Buy (x' + seedGain + ') ' + seeds[i].name + ' $' + seeds[i].cost + '</button>';
         }
     }
 }
 
 function loadFarm() {
+
+    clearInterval(growing);
+    growing = setInterval(farmGrow, 1000);
+
     document.getElementById("startBtn").style.display = "None";
     document.getElementById("money").style.display = "Block";
     document.getElementById("rank").style.display = "Block";
     document.getElementById("seedBag").style.display = "Inline-Block";
-    var farm = document.getElementById("farm");
 
+    var farm = document.getElementById("farm");
     farm.style.display = "Inline-Grid";
 
     farmGrid = farmLvl * farmLvl;
@@ -159,6 +178,8 @@ function loadFarm() {
             ready: false,
             expGain: null,
         });
+        document.getElementById(i).style.height = farmSize + "px"; 
+        document.getElementById(i).style.width = farmSize + "px";
     }
 
     farm.style.transform = "Scale(1.5)";
@@ -175,12 +196,14 @@ function loadFarm() {
 
 function collectPlot(plotNum) {
     if (farmArray[plotNum].ready == true) {
-        user.money += farmArray[plotNum].value;
+        var collect;
+        collect = Math.random() * ((farmArray[plotNum].value + 1) - (farmArray[plotNum].value - 1)) + (farmArray[plotNum].value - 1);
+        user.money += collect
+        console.log("Got " + collect)
         user.xp += farmArray[plotNum].expGain;
         farmArray[plotNum].value = 0;
         farmArray[plotNum].ready = false;
-        console.log("Collected from Plot " + plotNum);
-        document.getElementById(plotNum).style.backgroundColor = "PaleGreen";
+        document.getElementById(plotNum).style.backgroundColor = "Wheat";
         document.getElementById(plotNum).innerHTML = "";
 
         updateRank()
@@ -189,10 +212,6 @@ function collectPlot(plotNum) {
 }
 
 function selectPlot(plotNum) {
-    if (firstSeed == true) {
-        firstSeed = false;
-        growing = setInterval(farmGrow, 2000);
-    }
     for (i = 0; i < seeds.length; i++) {
         if (seeds[i].equipped == true && seeds[i].quantity > 0 && farmArray[plotNum].growing == false) {
             farmArray[plotNum].type = seeds[i].name;
@@ -217,12 +236,16 @@ function selectPlot(plotNum) {
 function farmGrow() {
     for (i = 0; i < farmArray.length; i++) {
         if (farmArray[i].growing == true) {
-            farmArray[i].speed -= 2;
+            farmArray[i].speed -= farm_speed;
             if (farmArray[i].speed <= 0) {
                 farmArray[i].growing = false;
                 farmArray[i].ready = true;
                 farmArray[i].speed = 0;
                 document.getElementById(i).style.backgroundColor = "GreenYellow";
+            }
+            else {
+                document.getElementById(i).style.backgroundColor = "Wheat";
+                document.getElementById(i).style.opacity = "0.7";
             }
         }
     }
