@@ -60,6 +60,10 @@ html, body {
     transition: 0.5s;
 }
 
+#seedBag {
+    display: inline-block;
+}
+
 .seeds {
     font-family: "Fira Sans", sans-serif;
     font-weight: 600;

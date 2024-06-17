@@ -18,7 +18,13 @@ var seeds = [
     potato,
     carrot,
     corn,
-    strawberry
+    strawberry,
+    pepper,
+    tomato,
+    eggplant,
+    melon,
+    avocado,
+    pear
 ];
 
 function updateRank() {
