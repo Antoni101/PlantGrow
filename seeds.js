@@ -95,7 +95,7 @@ const melon = {
 };
 
 const avocado = {
-    "name": "Watermelon",
+    "name": "Avocado",
     "value": 1300,
     "speed": 35, // 35 Seconds
     "expGain": 100,
