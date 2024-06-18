@@ -10,7 +10,7 @@ var farm_speed_cost = 100;
 var farmSize = 100;
 
 var user = {
-    "money": 8.25,
+    "money": 10.25,
     "rank": 1,
     "xp": 0,
     "max_xp": 20
@@ -143,7 +143,7 @@ function loadShop() {
     }
 }
 
-function loadFarm() {
+function loadFarm() { //LOAD GRID ---------------------------------------------------------------//
 
     clearInterval(growing);
     growing = setInterval(farmGrow, 1000);
@@ -168,12 +168,13 @@ function loadFarm() {
     farm.innerHTML = '';
     farmArray = [];
     for (let i = 0; i < farmGrid; i++) {
-        farm.innerHTML += ' <div id="' + i + '"onmouseover="collectPlot(' + i + ')" onclick="selectPlot(' + i + ')" class="plot"></div>'
+        farm.innerHTML += ' <div id="' + i + '"onmouseover="collectPlot(' + i + ')" onclick="selectPlot(' + i + ')" class="plot"><div class="progressBar" id="progress' + i + '"></div></div>'
         farmArray.push({
             type: null,
             value: null,
             growing: false,
             speed: null,
+            max: null,
             icon: null,
             ready: false,
             expGain: null,
@@ -203,8 +204,8 @@ function collectPlot(plotNum) {
         user.xp += farmArray[plotNum].expGain;
         farmArray[plotNum].value = 0;
         farmArray[plotNum].ready = false;
-        document.getElementById(plotNum).style.backgroundColor = "Wheat";
-        document.getElementById(plotNum).innerHTML = "";
+        document.getElementById("progress" + plotNum).style.backgroundColor = "PaleGoldenRod";
+        document.getElementById("progress" + plotNum).innerHTML = "";
 
         updateRank()
         updateMoney()
@@ -218,9 +219,10 @@ function selectPlot(plotNum) {
             farmArray[plotNum].value = seeds[i].value;
             farmArray[plotNum].growing = true;
             farmArray[plotNum].speed = seeds[i].speed;
+            farmArray[plotNum].max = seeds[i].speed;
             farmArray[plotNum].icon = seeds[i].icon;
             farmArray[plotNum].expGain = seeds[i].expGain;
-            document.getElementById(plotNum).innerHTML = farmArray[plotNum].icon;
+            document.getElementById("progress" + plotNum).innerHTML = farmArray[plotNum].icon;
 
             seeds[i].quantity -= 1;
             updateBag()
@@ -241,11 +243,19 @@ function farmGrow() {
                 farmArray[i].growing = false;
                 farmArray[i].ready = true;
                 farmArray[i].speed = 0;
-                document.getElementById(i).style.backgroundColor = "GreenYellow";
+                document.getElementById("progress" + i).style.height = "100%";
+                document.getElementById("progress" + i).style.backgroundColor = "GreenYellow";
+                document.getElementById("progress" + i).style.opacity = "1";
             }
             else {
-                document.getElementById(i).style.backgroundColor = "Wheat";
-                document.getElementById(i).style.opacity = "0.7";
+                var progress;
+                progress = (farmArray[i].speed / farmArray[i].max) * 100;
+                console.log(farmArray[i].speed + "/" + farmArray[i].max)
+                document.getElementById("progress" + i).style.height = progress + "%";
+                document.getElementById("progress" + i).style.width = "100%";
+                document.getElementById("progress" + i).style.backgroundColor = "MediumSpringGreen";
+                document.getElementById("progress" + i).style.opacity = "0.7";
+
             }
         }
     }
