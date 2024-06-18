@@ -108,13 +108,15 @@ function loadUpgrades() {
 }
 
 function upgradeSpeed() {
-    if (window.confirm("Warning, Upgrading the Farm wipes all seeds from the farm, Proceed?")) {
-        user.money -= farm_speed_cost;
-        farm_speed += 0.5;
-        farm_speed_cost = farm_speed_cost * 3.5;
+    if (user.money >= farm_speed_cost) {
+        if (window.confirm("Warning, Upgrading the Farm wipes all seeds from the farm, Proceed?")) {
+            user.money -= farm_speed_cost;
+            farm_speed += 0.5;
+            farm_speed_cost = farm_speed_cost * 3.5;
 
-        loadFarm()
-        updateMoney()
+            loadFarm()
+            updateMoney()
+        }
     }
 }
 
