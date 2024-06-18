@@ -4,30 +4,31 @@ var farmArray = [];
 var seedGain = 5;
 var growing;
 var bag;
-var farm_upgrade_cost = 50;
-var farm_speed = 1;
-var farm_speed_cost = 100;
+var farm_upgrade_cost = 25;
+var farm_speed = 0.25;
+var farm_speed_cost = 50;
 var farmSize = 100;
+var farmLeft = 45;
+
+var hudbgcolor = "SandyBrown";
+var hudborder = "3px solid Peru";
 
 var user = {
-    "money": 10.25,
+    "money": 8.50,
     "rank": 1,
     "xp": 0,
     "max_xp": 20
 };
 
-var seeds = [
-    potato,
-    carrot,
-    corn,
-    strawberry,
-    pepper,
-    tomato,
-    eggplant,
-    melon,
-    avocado,
-    pear
-];
+function updateColors() {
+    document.getElementById("shop").style.backgroundColor = hudbgcolor;
+    document.getElementById("seedBag").style.backgroundColor = hudbgcolor;
+    document.getElementById("upgrades").style.backgroundColor = hudbgcolor;
+
+    document.getElementById("shop").style.border = hudborder;
+    document.getElementById("seedBag").style.border = hudborder;
+    document.getElementById("upgrades").style.border = hudborder;
+}
 
 function updateRank() {
     var rankTxt = document.getElementById("rank");
@@ -89,7 +90,7 @@ function equipSeed(seed) {
 function buySeed(seed) {
     if (user.money >= seeds[seed].cost && user.rank >= seeds[seed].rankReq) {
         user.money -= seeds[seed].cost;
-        seeds[seed].quantity += seedGain;
+        seeds[seed].quantity += seeds[seed].seedGain;
         console.log("Bought " + seeds[seed].name);
 
         updateBag()
@@ -110,7 +111,7 @@ function upgradeSpeed() {
     if (window.confirm("Warning, Upgrading the Farm wipes all seeds from the farm, Proceed?")) {
         user.money -= farm_speed_cost;
         farm_speed += 0.5;
-        farm_speed_cost = farm_speed_cost * 5;
+        farm_speed_cost = farm_speed_cost * 3.5;
 
         loadFarm()
         updateMoney()
@@ -122,8 +123,9 @@ function upgradeFarm() {
         if (window.confirm("Warning, Upgrading Farm wipes all seeds from the farm, Proceed?")) {
             user.money -= farm_upgrade_cost;
             farmLvl += 1;
-            farm_upgrade_cost = farm_upgrade_cost * 5;
-            farmSize -= 5;
+            farm_upgrade_cost = farm_upgrade_cost * 3.5;
+            farmLeft -= 2;
+            farmSize -= 2;
 
             loadFarm()
             updateMoney()
@@ -138,7 +140,7 @@ function loadShop() {
     for (i = 0; i < seeds.length; i++) {
         if (user.rank >= seeds[i].rankReq) {
             shop.innerHTML += '<br>';
-            shop.innerHTML += '<button onclick="buySeed(' + i + ')">Buy (x' + seedGain + ') ' + seeds[i].name + ' $' + seeds[i].cost + '</button>';
+            shop.innerHTML += '<button onclick="buySeed(' + i + ')">Buy (x' + seeds[i].seedGain + ') ' + seeds[i].name + ' $' + seeds[i].cost + '</button>';
         }
     }
 }
@@ -146,16 +148,16 @@ function loadShop() {
 function loadFarm() { //LOAD GRID ---------------------------------------------------------------//
 
     clearInterval(growing);
-    growing = setInterval(farmGrow, 1000);
+    growing = setInterval(farmGrow, 250);
 
     document.getElementById("startBtn").style.display = "None";
     document.getElementById("money").style.display = "Block";
     document.getElementById("rank").style.display = "Block";
-    document.getElementById("seedBag").style.display = "Inline-Block";
+    document.getElementById("huds").style.display = "Block";
 
     var farm = document.getElementById("farm");
     farm.style.display = "Inline-Grid";
-
+    farm.style.left = farmLeft + "%";
     farmGrid = farmLvl * farmLvl;
 
     farm.style.gridTemplateColumns = "";
@@ -193,6 +195,7 @@ function loadFarm() { //LOAD GRID ----------------------------------------------
     updateBag()
     updateRank()
     updateMoney();
+    updateColors()
 }
 
 function collectPlot(plotNum) {
@@ -257,6 +260,64 @@ function farmGrow() {
                 document.getElementById("progress" + i).style.opacity = "0.7";
 
             }
+        }
+    }
+}
+
+var shopOpen = false;
+var upOpen = false;
+var invOpen = false;
+
+function openHud(hud) {
+    if (hud == 1) {
+        if (shopOpen == false) {
+            shopOpen = true;
+            document.getElementById("shop").style.display = "Block";
+            document.getElementById("shop").style.transform = "Scale(1.1)";
+            setTimeout(function() {
+                document.getElementById("shop").style.transform = "Scale(1.0)";
+            },50)
+        }
+        else {
+            shopOpen = false;
+            document.getElementById("shop").style.transform = "Scale(0.01)";
+            setTimeout(function() {
+                document.getElementById("shop").style.display = "None";
+            },100);
+        }
+    }
+    else if (hud == 2) {
+        if (upOpen == false) {
+            upOpen = true;
+            document.getElementById("upgrades").style.display = "Block";
+            document.getElementById("upgrades").style.transform = "Scale(1.1)";
+            setTimeout(function() {
+                document.getElementById("upgrades").style.transform = "Scale(1.0)";
+            },50)
+        }
+        else {
+            upOpen = false;
+            document.getElementById("upgrades").style.transform = "Scale(0.01)";
+            setTimeout(function() {
+                document.getElementById("upgrades").style.display = "None";
+            },100);
+        }
+    }
+    else if (hud == 3) {
+        if (invOpen == false) {
+            invOpen = true;
+            document.getElementById("seedBag").style.display = "Inline-Block";
+            document.getElementById("seedBag").style.transform = "Scale(1.1)";
+            setTimeout(function() {
+                document.getElementById("seedBag").style.transform = "Scale(1.0)";
+            },50);
+        }
+        else {
+            invOpen = false;
+            document.getElementById("seedBag").style.transform = "Scale(0.01)";
+            setTimeout(function() {
+                document.getElementById("seedBag").style.display = "None";
+            },100);
         }
     }
 }

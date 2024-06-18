@@ -20,11 +20,11 @@ button {
 button:hover {
     opacity: 1.0;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    transform: scale(1.1);
+    transform: scale(1.02);
 }
 
 button:active {
-    transform: scale(0.9);
+    transform: scale(0.95);
 }
 
 #startBtn {
@@ -92,12 +92,13 @@ button:active {
     top: 65%;
     width: 150px;
     height: 300px;
-    border-radius: 30px;
-    border: None;
-    background-color: Tan;
+    border-radius: 20px;
+    background-color: DimGray;
     overflow: auto;
     left: 1%;
+    border: 3px solid DarkSlateGray;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    transition: 0.2s;
 }
 
 .seeds {
@@ -137,22 +138,52 @@ button:active {
 }
 
 #shop {
+    display: none;
     position: absolute;
     top: 10%;
-    left: 10%;
+    left: 5%;
+    text-align: center;
+    overflow-y: auto;
+    background-color: DimGray;
+    width: 450px;
+    height: 50vh;
+    overflow-y: auto;
+    border-radius: 40px;
+    border: 5px solid DarkSlateGray;
+    transition: 0.2s;
 }
 
 #upgrades {
+    display: none;
     position: absolute;
     top: 10%;
-    left: 75%;
-}
-
-#collectArea {
+    left: 70%;
+    text-align: center;
+    overflow-y: auto;
+    background-color: DimGray;
+    width: 450px;
+    height: 50vh;
+    overflow-y: auto;
+    border-radius: 40px;
+    border: 5px solid DarkSlateGray;
     transition: 0.2s;
-    opacity: 0.7;
 }
 
 .progressBar {
-    transition: 1s;
+    transition: 0.7s;
+}
+
+.hud {
+    width: 100px;
+    height: 50px;
+    font-size: 15px;
+    position: relative;
+    top: 80vh;
+    left: 75%;
+    background-color: MediumSpringGreen;
+    border: 3px solid green;
+}
+
+#huds {
+    display: None;
 }
