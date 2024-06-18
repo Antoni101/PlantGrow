@@ -1,12 +1,12 @@
 const potato = {
     "name": "Potato",
-    "value": 2,
+    "value": 4,
     "speed": 5, //5 Seconds
     "expGain": 5,
     "equipped": false,
     "quantity": 0,
     "rankReq": 1,
-    "cost": 7,
+    "cost": 5,
     "icon": "🥔",
     "seedGain": 4
 };
@@ -44,7 +44,7 @@ const strawberry = {
     "expGain": 10,
     "equipped": false,
     "quantity": 0,
-    "rankReq": 2,
+    "rankReq": 3,
     "cost": 25,
     "icon": "🍓",
     "seedGain": 10
@@ -57,7 +57,7 @@ const pepper = {
     "expGain": 20,
     "equipped": false,
     "quantity": 0,
-    "rankReq": 3,
+    "rankReq": 4,
     "cost": 50,
     "icon": "🌶️",
     "seedGain": 8
@@ -70,7 +70,7 @@ const tomato = {
     "expGain": 7,
     "equipped": false,
     "quantity": 0,
-    "rankReq": 3,
+    "rankReq": 5,
     "cost": 80,
     "icon": "🍅",
     "seedGain": 20
@@ -83,7 +83,7 @@ const eggplant = {
     "expGain": 50,
     "equipped": false,
     "quantity": 0,
-    "rankReq": 5,
+    "rankReq": 6,
     "cost": 100,
     "icon": "🍆",
     "seedGain": 3
@@ -96,7 +96,7 @@ const melon = {
     "expGain": 20,
     "equipped": false,
     "quantity": 0,
-    "rankReq": 4,
+    "rankReq": 7,
     "cost": 200,
     "icon": "🍉",
     "seedGain": 2
@@ -109,7 +109,7 @@ const avocado = {
     "expGain": 100,
     "equipped": false,
     "quantity": 0,
-    "rankReq": 4,
+    "rankReq": 8,
     "cost": 300,
     "icon": "🥑",
     "seedGain": 7
@@ -135,7 +135,7 @@ const onion = {
     "expGain": 80,
     "equipped": false,
     "quantity": 0,
-    "rankReq": 6,
+    "rankReq": 9,
     "cost": 1000,
     "icon": "🧅",
     "seedGain": 3
@@ -148,7 +148,7 @@ const broc = {
     "expGain": 300,
     "equipped": false,
     "quantity": 0,
-    "rankReq": 7,
+    "rankReq": 10,
     "cost": 2000,
     "icon": "🥦",
     "seedGain": 1
@@ -161,7 +161,7 @@ const nuts = {
     "expGain": 300,
     "equipped": false,
     "quantity": 0,
-    "rankReq": 8,
+    "rankReq": 11,
     "cost": 2000,
     "icon": "🥜",
     "seedGain": 50
@@ -174,7 +174,7 @@ const cherries = {
     "expGain": 300,
     "equipped": false,
     "quantity": 0,
-    "rankReq": 9,
+    "rankReq": 12,
     "cost": 2000,
     "icon": "🍒",
     "seedGain": 15
@@ -187,11 +187,38 @@ const cookie = {
     "expGain": 300,
     "equipped": false,
     "quantity": 0,
-    "rankReq": 10,
+    "rankReq": 13,
     "cost": 2000,
     "icon": "🍪",
     "seedGain": 2
 };
+
+const coco = {
+    "name": "Coconut",
+    "value": 1250,
+    "speed": 60, // 300 Seconds
+    "expGain": 350,
+    "equipped": false,
+    "quantity": 0,
+    "rankReq": 14,
+    "cost": 750,
+    "icon": "🥥",
+    "seedGain": 7
+};
+
+const pine = {
+    "name": "Pineapple",
+    "value": 17250,
+    "speed": 450, // 300 Seconds
+    "expGain": 1000,
+    "equipped": false,
+    "quantity": 0,
+    "rankReq": 15,
+    "cost": 3500,
+    "icon": "🍍",
+    "seedGain": 3
+};
+
 
 
 var seeds = [
@@ -209,5 +236,7 @@ var seeds = [
     broc,
     nuts,
     cherries,
-    cookie
+    cookie,
+    coco,
+    pine
 ];

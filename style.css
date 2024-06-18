@@ -9,7 +9,7 @@ button {
     display: inline-block;
     margin: 1%;
     border: none;
-    border-radius: 5px;
+    border-radius: 40px;
     transition: 0.2s;
     height: 75px;
     width: 400px;
@@ -70,6 +70,17 @@ button:active {
     font-style: normal;
     text-align: center;
     display: None;
+}
+
+
+#rankBar {
+    transition: 1s;
+    font-size: 25px;
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    display: None;
+    transform: translateX(-50%);
 }
 
 #farm {

@@ -31,11 +31,17 @@ function updateColors() {
 }
 
 function updateRank() {
+    var bar = document.getElementById("rankBar");
+    bar.style.display = "Block"
+    bar.value = user.xp;
+    bar.max = user.max_xp;
     var rankTxt = document.getElementById("rank");
     if (user.xp >= user.max_xp) { //Rank Up
-        user.max_xp = user.max_xp * 2;
+        user.max_xp = user.max_xp * 4;
         user.xp = 0;
         user.rank += 1;
+        bar.value = user.xp;
+        bar.max = user.max_xp;
         loadShop()
     }
     rankTxt.innerHTML = "Rank " + user.rank;
@@ -92,6 +98,10 @@ function buySeed(seed) {
         user.money -= seeds[seed].cost;
         seeds[seed].quantity += seeds[seed].seedGain;
         console.log("Bought " + seeds[seed].name);
+        document.getElementById("seedbagIcon").style.transform = "Scale(1.3)"
+        setTimeout(function() {
+            document.getElementById("seedbagIcon").style.transform = "Scale(1.0)"
+        },50);
 
         updateBag()
         updateMoney()
@@ -112,7 +122,8 @@ function upgradeSpeed() {
         if (window.confirm("Warning, Upgrading the Farm wipes all seeds from the farm, Proceed?")) {
             user.money -= farm_speed_cost;
             farm_speed += 0.5;
-            farm_speed_cost = farm_speed_cost * 3.5;
+            farm_speed_cost = farm_speed_cost * 4.5;
+            farm_speed_cost = farm_speed_cost.toFixed(2);
 
             loadFarm()
             updateMoney()
@@ -125,7 +136,8 @@ function upgradeFarm() {
         if (window.confirm("Warning, Upgrading Farm wipes all seeds from the farm, Proceed?")) {
             user.money -= farm_upgrade_cost;
             farmLvl += 1;
-            farm_upgrade_cost = farm_upgrade_cost * 3.5;
+            farm_upgrade_cost = farm_upgrade_cost * 4.5;
+            farm_upgrade_cost = farm_upgrade_cost.toFixed(2);
             farmLeft -= 2;
             farmSize -= 2;
 
