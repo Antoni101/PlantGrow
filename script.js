@@ -14,7 +14,7 @@ var hudbgcolor = "SandyBrown";
 var hudborder = "3px solid Peru";
 
 var user = {
-    "money": 8.50,
+    "money": 10.25,
     "rank": 1,
     "xp": 0,
     "max_xp": 20
@@ -37,7 +37,7 @@ function updateRank() {
     bar.max = user.max_xp;
     var rankTxt = document.getElementById("rank");
     if (user.xp >= user.max_xp) { //Rank Up
-        user.max_xp = user.max_xp * 4;
+        user.max_xp = user.max_xp * 3.5;
         user.xp = 0;
         user.rank += 1;
         bar.value = user.xp;
@@ -45,8 +45,6 @@ function updateRank() {
         loadShop()
     }
     rankTxt.innerHTML = "Rank " + user.rank;
-
-    console.log("XP: " + user.xp + "/" + user.max_xp);
 }
 
 function updateMoney() {
@@ -59,50 +57,48 @@ function updateBag() {
     bag = document.getElementById("seedBag");
     bag.innerHTML = "";
     for (i = 0; i < seeds.length; i++) {
-        bag.innerHTML += '<p class="seeds" id="seed' + i + '" onclick="equipSeed(' + i + ')">' + seeds[i].icon + "<font size='5'> x" + seeds[i].quantity + '</font></p>';
+        //bag.innerHTML += '<img  onclick="equipSeed(' + i + ')" class="seeds" id="seed' + i + '" src="images/' + seeds[i].name + '.png"><strong class="seedsTxt">' + seeds[i].quantity + '</strong>'
+
         if (seeds[i].quantity > 0) {
-            document.getElementById('seed' + i).style.display = "Inline-Block";
-        }
+            bag.innerHTML += '<img  onclick="equipSeed(' + i + ')" class="seeds" id="seed' + i + '" src="images/' + seeds[i].name + '.png"><strong class="seedsTxt">' + seeds[i].quantity + '</strong>'
+            if (seeds[i].equipped == true) {
+                document.getElementById('seed' + i).style.opacity = "0.9";
+                document.getElementById('seed' + i).style.transform = "scale(1.2)";
+            }
+            else {
+                document.getElementById('seed' + i).style.opacity = "0.7";
+                document.getElementById('seed' + i).style.transform = "scale(1.0)";
+            } 
+        } /*
         else {
             document.getElementById('seed' + i).style.display = "None";
-        }
+        } */
 
-        if (seeds[i].equipped == true) {
-            document.getElementById('seed' + i).style.color = "Gold";
-            document.getElementById('seed' + i).style.opacity = "0.9";
-            document.getElementById('seed' + i).style.transform = "scale(1.2)";
-        }
-        else {
-            document.getElementById('seed' + i).style.color = "Black";
-            document.getElementById('seed' + i).style.opacity = "0.7";
-            document.getElementById('seed' + i).style.transform = "scale(1.0)";
-        }
     }
 }
 
 function equipSeed(seed) {
     for (i = 0; i < seeds.length; i++) {
         seeds[i].equipped = false;  
-        document.getElementById('seed' + i).style.color = "Black";
-        document.getElementById('seed' + i).style.opacity = "0.7";
-        document.getElementById('seed' + i).style.transform = "scale(1.0)";
+        document.getElementById('seed' + seed).style.transform = "scale(1.0)";
     }
     seeds[seed].equipped = true;
-    document.getElementById('seed' + seed).style.color = "Gold";
-    document.getElementById('seed' + seed).style.opacity = "0.9";
-    document.getElementById('seed' + seed).style.transform = "scale(1.2)"
+    document.getElementById('seed' + seed).style.transform = "scale(1.2)";
+    updateBag()
 }
 
 function buySeed(seed) {
     if (user.money >= seeds[seed].cost && user.rank >= seeds[seed].rankReq) {
         user.money -= seeds[seed].cost;
+        var tempNum = (seeds[seed].cost / 4);
+        seeds[seed].cost += parseInt(tempNum.toFixed(2))
         seeds[seed].quantity += seeds[seed].seedGain;
-        console.log("Bought " + seeds[seed].name);
         document.getElementById("seedbagIcon").style.transform = "Scale(1.3)"
         setTimeout(function() {
             document.getElementById("seedbagIcon").style.transform = "Scale(1.0)"
         },50);
 
+        loadShop()
         updateBag()
         updateMoney()
     }
@@ -206,7 +202,6 @@ function loadFarm() { //LOAD GRID ----------------------------------------------
 
     loadShop()
     loadUpgrades()
-    updateBag()
     updateRank()
     updateMoney();
     updateColors()
@@ -237,9 +232,8 @@ function selectPlot(plotNum) {
             farmArray[plotNum].growing = true;
             farmArray[plotNum].speed = seeds[i].speed;
             farmArray[plotNum].max = seeds[i].speed;
-            farmArray[plotNum].icon = seeds[i].icon;
             farmArray[plotNum].expGain = seeds[i].expGain;
-            document.getElementById("progress" + plotNum).innerHTML = farmArray[plotNum].icon;
+            document.getElementById("progress" + plotNum).innerHTML = '<img class="seeds" src="images/' + farmArray[plotNum].type + '.png">';
 
             seeds[i].quantity -= 1;
             updateBag()
@@ -267,7 +261,6 @@ function farmGrow() {
             else {
                 var progress;
                 progress = (farmArray[i].speed / farmArray[i].max) * 100;
-                console.log(farmArray[i].speed + "/" + farmArray[i].max)
                 document.getElementById("progress" + i).style.height = progress + "%";
                 document.getElementById("progress" + i).style.width = "100%";
                 document.getElementById("progress" + i).style.backgroundColor = "MediumSpringGreen";
