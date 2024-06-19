@@ -16,6 +16,7 @@ var shopOpen = false;
 var invOpen = false;
 var fill_all_cost = 1000;
 var fill_upgrade = false;
+var farm_seed_upgrade_cost = 10000;
 
 var user = {
     "money": 15.25,
@@ -42,7 +43,7 @@ function updateRank() {
     bar.max = user.max_xp;
     var rankTxt = document.getElementById("rank");
     if (user.xp >= user.max_xp) { //Rank Up
-        user.max_xp = user.max_xp * 3.5;
+        user.max_xp = user.max_xp * 2.5;
         user.xp = 0;
         user.rank += 1;
         bar.value = user.xp;
@@ -111,11 +112,30 @@ function buySeed(seed) {
 function loadUpgrades() {
     var upgrades = document.getElementById("upgrades");
     upgrades.innerHTML = "";
-    upgrades.innerHTML += '<br><button onclick="upgradeFarm()">Upgrade Farm Size $' + farm_upgrade_cost + '</button>';
+    if (farmLvl < 8) {
+        upgrades.innerHTML += '<br><button onclick="upgradeFarm()">Upgrade Farm Size $' + farm_upgrade_cost + '</button>';
+    }
     upgrades.innerHTML += '<br><button onclick="upgradeSpeed()">Upgrade Farm Speed $' + farm_speed_cost + '</button>';
-
+    upgrades.innerHTML += '<br><button onclick="upgradeValues()">Upgrade Seeds Value $' + farm_seed_upgrade_cost + '</button>';
+    if (user.rank >= ferm.rankReq) {
+        upgrades.innerHTML += '<br><button onclick="upgradeFerm()">' + ferm.txt + " $" + ferm.cost + '</button>';
+    }
     if (fill_upgrade == false) {
         upgrades.innerHTML += '<br><button onclick="upgradeFill()">Fill All Button $' + fill_all_cost + '</button>';
+    }
+}
+
+function upgradeValues() {
+    if (user.money >= farm_seed_upgrade_cost) {
+        for (i = 0; i < seeds.length; i++) {
+            seeds[i].value = seeds[i].value * 1.5;
+        }
+
+        farm_seed_upgrade_cost = farm_seed_upgrade_cost * 3;
+
+        loadShop()
+        loadUpgrades()
+        updateMoney()
     }
 }
 
@@ -151,7 +171,7 @@ function upgradeFarm() {
             farm_upgrade_cost = farm_upgrade_cost * 4.5;
             farm_upgrade_cost = farm_upgrade_cost.toFixed(2);
             farmLeft -= 2;
-            farmSize -= 2;
+            farmSize -= 5;
 
             loadFarm()
             updateMoney()
@@ -222,6 +242,7 @@ function loadFarm() { //LOAD GRID ----------------------------------------------
             ready: false,
             expGain: null,
         });
+
         document.getElementById(i).style.height = farmSize + "px"; 
         document.getElementById(i).style.width = farmSize + "px";
     }
@@ -269,7 +290,7 @@ function updatePlot(plotNum) {
 
 function fillAll() {
     for (let i = 0; i < farmGrid; i++) {
-        if (farmArray[i].growing == false && user.seed.quantity > 0) {
+        if (farmArray[i].growing == false && user.seed.quantity > 0 && farmArray[i].ready != true) {
             updatePlot(i)
         }
     }
@@ -361,6 +382,24 @@ function openHud(hud) {
             document.getElementById("seedBag").style.transform = "Scale(0.01)";
             setTimeout(function() {
                 document.getElementById("seedBag").style.display = "None";
+            },100);
+        }
+    }
+    else if (hud == 4) {
+        if (ferm.scr == false) {
+            ferm.scr = true;
+            document.getElementById("fermScr").style.display = "Block";
+            document.getElementById("fermScr").style.transform = "Scale(1.1)";
+            setTimeout(function() {
+                document.getElementById("fermScr").style.transform = "Scale(1.0)";
+            },50);
+            loadBarrels()
+        }
+        else {
+            ferm.scr = false;
+            document.getElementById("fermScr").style.transform = "Scale(0.01)";
+            setTimeout(function() {
+                document.getElementById("fermScr").style.display = "None";
             },100);
         }
     }

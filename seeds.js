@@ -7,7 +7,10 @@ const potato = {
     "quantity": 0,
     "rankReq": 1,
     "cost": 5,
-    "seedGain": 4
+    "seedGain": 4,
+    "canFerm": true,
+    "fermMax": 10,
+    "fermVal": 55000
 };
 
 const carrot = {
@@ -19,8 +22,10 @@ const carrot = {
     "quantity": 0,
     "rankReq": 1,
     "cost": 10,
-    "icon": "🥕",
-    "seedGain": 9
+    "seedGain": 9,
+    "canFerm": true,
+    "fermMax": 10,
+    "fermVal": 37500
 };
 
 const corn = {
@@ -32,8 +37,8 @@ const corn = {
     "quantity": 0,
     "rankReq": 2,
     "cost": 30,
-    "icon": "🌽",
-    "seedGain": 2
+    "seedGain": 2,
+    "canFerm": false
 };
 
 const peas = {
@@ -45,7 +50,8 @@ const peas = {
     "quantity": 0,
     "rankReq": 3,
     "cost": 18.50,
-    "seedGain": 9
+    "seedGain": 9,
+    "canFerm": false
 };
 
 const pepper = {
@@ -57,8 +63,8 @@ const pepper = {
     "quantity": 0,
     "rankReq": 4,
     "cost": 50,
-    "icon": "🌶️",
-    "seedGain": 8
+    "seedGain": 8,
+    "canFerm": false
 };
 
 const tomato = {
@@ -70,8 +76,8 @@ const tomato = {
     "quantity": 0,
     "rankReq": 5,
     "cost": 80,
-    "icon": "🍅",
-    "seedGain": 20
+    "seedGain": 20,
+    "canFerm": false
 };
 
 const pickle = {
@@ -83,20 +89,21 @@ const pickle = {
     "quantity": 0,
     "rankReq": 5,
     "cost": 80,
-    "seedGain": 8
+    "seedGain": 8,
+    "canFerm": false
 };
 
 const eggplant = {
     "name": "eggplant",
-    "value": 150,
+    "value": 300,
     "speed": 40, // 40 Seconds
-    "expGain": 400,
+    "expGain": 480,
     "equipped": false,
     "quantity": 0,
     "rankReq": 6,
     "cost": 500,
-    "icon": "🍆",
-    "seedGain": 3
+    "seedGain": 3,
+    "canFerm": false
 };
 
 const cabbage = {
@@ -108,33 +115,35 @@ const cabbage = {
     "quantity": 0,
     "rankReq": 7,
     "cost": 100,
-    "seedGain": 16
+    "seedGain": 16,
+    "canFerm": false
 };
 
 const onion = {
     "name": "onion",
     "value": 2405,
     "speed": 175, // 175 Seconds
-    "expGain": 500,
+    "expGain": 5000,
     "equipped": false,
     "quantity": 0,
     "rankReq": 9,
     "cost": 1000,
-    "icon": "🧅",
-    "seedGain": 3
+    "seedGain": 3,
+    "canFerm": false
 };
 
 const broc = {
     "name": "broccoli",
     "value": 10000,
     "speed": 200, // 200 Seconds
-    "expGain": 2000,
+    "expGain": 10000,
     "equipped": false,
     "quantity": 0,
     "rankReq": 10,
     "cost": 2000,
     "icon": "🥦",
-    "seedGain": 1
+    "seedGain": 3,
+    "canFerm": false
 };
 
 
@@ -147,8 +156,8 @@ const cherries = {
     "quantity": 0,
     "rankReq": 12,
     "cost": 2000,
-    "icon": "🍒",
-    "seedGain": 15
+    "seedGain": 15,
+    "canFerm": false
 };
 
 const cauli = {
@@ -160,7 +169,8 @@ const cauli = {
     "quantity": 0,
     "rankReq": 13,
     "cost": 10000,
-    "seedGain": 5
+    "seedGain": 5,
+    "canFerm": false
 };
 
 
