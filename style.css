@@ -20,36 +20,23 @@ button {
     text-transform: capitalize;
 }
 
-.profitable {
-    background-color: lightgreen;
-}
-
-.unprofitable {
-    background-color: Tomato;
-}
-
-.cant_afford {
-    opacity: 0.5;
-}
-
-.cant_afford:active {
-    transform: scale(1.0);
-}
-
-.cant_afford:hover {
-    transform: scale(1.0);
-    opacity: 0.6;
-}
-
 button:hover {
     opacity: 1.0;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     transform: scale(1.02);
 }
 
-button:active {
-    transform: scale(0.95);
-}
+button:active { transform: scale(0.95); }
+
+.profitable { background-color: lightgreen; }
+
+.unprofitable { background-color: Tomato; }
+
+.cant_afford { opacity: 0.5; }
+
+.cant_afford:active { transform: scale(1.0); }
+
+.cant_afford:hover { transform: scale(1.0); opacity: 0.6; }
 
 #startBtn {
     height: 130px;
@@ -74,9 +61,7 @@ button:active {
     opacity: 1;
 }
 
-#startBtn:active {
-    font-size: 105px;
-}
+#startBtn:active { font-size: 105px; }
 
 #money {
     font-family: "Fira Sans", sans-serif;
@@ -119,6 +104,16 @@ button:active {
     grid-template-columns: '';
     border-radius: 5px;
     transition: 0.5s;
+}
+
+#fillBtn {
+    display: None;
+    font-size: 15px;
+    height: 50px;
+    width: 100px;
+    position: fixed;
+    top: 20%;
+    left: 47%;
 }
 
 #seedBag {
@@ -175,9 +170,7 @@ button:active {
     cursor: pointer;
 }
 
-.plot:active {
-    transform: scale(1.05);
-}
+.plot:active { transform: scale(1.05); }
 
 #shop {
     display: none;
@@ -212,9 +205,7 @@ button:active {
     transition: 0.2s;
 }
 
-.progressBar {
-    transition: 0.7s;
-}
+.progressBar { transition: 0.7s; }
 
 .hud {
     width: 100px;
@@ -227,7 +218,5 @@ button:active {
     border: 3px solid #1c9099;
 }
 
-#huds {
-    display: None;
-}
+#huds { display: None; }
 

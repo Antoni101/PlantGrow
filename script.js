@@ -9,15 +9,20 @@ var farm_speed = 0.25;
 var farm_speed_cost = 50;
 var farmSize = 100;
 var farmLeft = 45;
-
 var hudbgcolor = "#a6bddb";
 var hudborder = "3px solid #1c9099";
+var upOpen = false;
+var shopOpen = false;
+var invOpen = false;
+var fill_all_cost = 1000;
+var fill_upgrade = false;
 
 var user = {
-    "money": 10.25,
+    "money": 15.25,
     "rank": 1,
     "xp": 0,
-    "max_xp": 20
+    "max_xp": 50,
+    "seed": null
 };
 
 function updateColors() {
@@ -57,7 +62,6 @@ function updateBag() {
     bag = document.getElementById("seedBag");
     bag.innerHTML = "";
     for (i = 0; i < seeds.length; i++) {
-        //bag.innerHTML += '<img  onclick="equipSeed(' + i + ')" class="seeds" id="seed' + i + '" src="images/' + seeds[i].name + '.png"><strong class="seedsTxt">' + seeds[i].quantity + '</strong>'
 
         if (seeds[i].quantity > 0) {
             bag.innerHTML += '<img  onclick="equipSeed(' + i + ')" class="seeds" id="seed' + i + '" src="images/' + seeds[i].name + '.png"><strong class="seedsTxt">' + seeds[i].quantity + '</strong>'
@@ -69,10 +73,7 @@ function updateBag() {
                 document.getElementById('seed' + i).style.opacity = "0.7";
                 document.getElementById('seed' + i).style.transform = "scale(1.0)";
             } 
-        } /*
-        else {
-            document.getElementById('seed' + i).style.display = "None";
-        } */
+        } 
 
     }
 }
@@ -83,6 +84,7 @@ function equipSeed(seed) {
         document.getElementById('seed' + seed).style.transform = "scale(1.0)";
     }
     seeds[seed].equipped = true;
+    user.seed = seeds[seed];
     document.getElementById('seed' + seed).style.transform = "scale(1.2)";
     updateBag()
 }
@@ -111,6 +113,20 @@ function loadUpgrades() {
     upgrades.innerHTML = "";
     upgrades.innerHTML += '<br><button onclick="upgradeFarm()">Upgrade Farm Size $' + farm_upgrade_cost + '</button>';
     upgrades.innerHTML += '<br><button onclick="upgradeSpeed()">Upgrade Farm Speed $' + farm_speed_cost + '</button>';
+
+    if (fill_upgrade == false) {
+        upgrades.innerHTML += '<br><button onclick="upgradeFill()">Fill All Button $' + fill_all_cost + '</button>';
+    }
+}
+
+function upgradeFill() {
+    if (user.money >= fill_all_cost) {
+        fill_upgrade = true;
+        user.money -= fill_all_cost;
+        document.getElementById("fillBtn").style.display = "Block";
+        loadUpgrades()
+        updateMoney()
+    }
 }
 
 function upgradeSpeed() {
@@ -239,21 +255,30 @@ function collectPlot(plotNum) {
     }
 }
 
+function updatePlot(plotNum) {
+    farmArray[plotNum].type = user.seed.name;
+    farmArray[plotNum].value = user.seed.value;
+    farmArray[plotNum].growing = true;
+    farmArray[plotNum].speed = user.seed.speed;
+    farmArray[plotNum].max = user.seed.speed;
+    farmArray[plotNum].expGain = user.seed.expGain;
+    document.getElementById("progress" + plotNum).innerHTML = '<img class="seeds" src="images/' + farmArray[plotNum].type + '.png">';
+    user.seed.quantity -= 1;
+    updateBag()
+}
+
+function fillAll() {
+    for (let i = 0; i < farmGrid; i++) {
+        if (farmArray[i].growing == false && user.seed.quantity > 0) {
+            updatePlot(i)
+        }
+    }
+}
+
 function selectPlot(plotNum) {
     for (i = 0; i < seeds.length; i++) {
-        if (seeds[i].equipped == true && seeds[i].quantity > 0 && farmArray[plotNum].growing == false) {
-            farmArray[plotNum].type = seeds[i].name;
-            farmArray[plotNum].value = seeds[i].value;
-            farmArray[plotNum].growing = true;
-            farmArray[plotNum].speed = seeds[i].speed;
-            farmArray[plotNum].max = seeds[i].speed;
-            farmArray[plotNum].expGain = seeds[i].expGain;
-            document.getElementById("progress" + plotNum).innerHTML = '<img class="seeds" src="images/' + farmArray[plotNum].type + '.png">';
-
-            seeds[i].quantity -= 1;
-            updateBag()
-
-            break;
+        if (user.seed.quantity > 0 && farmArray[plotNum].growing == false) {
+            updatePlot(plotNum)
         }
         else {
             //console.log(farmArray[plotNum].speed + " seconds left until harvest")
@@ -286,9 +311,6 @@ function farmGrow() {
     }
 }
 
-var shopOpen = false;
-var upOpen = false;
-var invOpen = false;
 
 function openHud(hud) {
     if (hud == 1) {

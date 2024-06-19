@@ -18,7 +18,8 @@
     <div id="upgrades">
         
     </div>
-    <button id="startBtn" onclick="loadFarm()">Start</button>
+
+    <button id="startBtn" onclick="loadFarm()">Start</button> <!-- START MENU -->
 
     <p id="money">💰$0</p>
     <div id="collectArea">
@@ -26,6 +27,8 @@
     </div>
     <p id="rank">Rank 0</p>
     <progress id="rankBar" value="0" max="100"></progress>
+
+    <button onclick="fillAll()"  id="fillBtn">Fill All</button>
     <div id="farm">
 
     </div>
@@ -33,18 +36,7 @@
     <div id="seedBag">
     </div>
 
-    <div id="hatchery">
-        <div class="incubator" id="inc0"></div>
-        <div class="incubator" id="inc1"></div>
-        <div class="incubator" id="inc2"></div>
-        <div class="incubator" id="inc3"></div>
-        <div class="incubator" id="inc4"></div>
-        <div class="incubator" id="inc5"></div>
-        <div class="incubator" id="inc6"></div>
-        <div class="incubator" id="inc7"></div>
-        <div class="incubator" id="inc8"></div>
-        <div class="incubator" id="inc9"></div>
-    </div>
+    
     <div id="huds">
         <button onclick="openHud(1)" class="hud">Buy Seeds</button>
         <button onclick="openHud(2)" class="hud">Upgrades</button>
