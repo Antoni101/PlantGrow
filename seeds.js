@@ -1,6 +1,6 @@
 const potato = {
     "name": "potato",
-    "value": 4,
+    "value": 6,
     "speed": 10, //5 Seconds
     "expGain": 5,
     "equipped": false,
@@ -15,7 +15,7 @@ const potato = {
 
 const carrot = {
     "name": "carrot",
-    "value": 2,
+    "value": 4,
     "speed": 5, //3 Seconds
     "expGain": 7,
     "equipped": false,
@@ -30,7 +30,7 @@ const carrot = {
 
 const corn = {
     "name": "corn",
-    "value": 65,
+    "value": 85,
     "speed": 25, // 15 Seconds
     "expGain": 35,
     "equipped": false,
@@ -43,7 +43,7 @@ const corn = {
 
 const peas = {
     "name": "peas",
-    "value": 11,
+    "value": 20,
     "speed": 12, // 300 Seconds
     "expGain": 28,
     "equipped": false,
@@ -56,7 +56,7 @@ const peas = {
 
 const pepper = {
     "name": "pepper",
-    "value": 15,
+    "value": 35,
     "speed": 20, // 15 Seconds
     "expGain": 35,
     "equipped": false,
@@ -69,7 +69,7 @@ const pepper = {
 
 const tomato = {
     "name": "tomato",
-    "value": 12,
+    "value": 42,
     "speed": 10, // 35 Seconds
     "expGain": 40,
     "equipped": false,
@@ -95,7 +95,7 @@ const pickle = {
 
 const eggplant = {
     "name": "eggplant",
-    "value": 300,
+    "value": 800,
     "speed": 40, // 40 Seconds
     "expGain": 480,
     "equipped": false,

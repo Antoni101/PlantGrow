@@ -14,7 +14,7 @@ var hudborder = "3px solid #1c9099";
 var upOpen = false;
 var shopOpen = false;
 var invOpen = false;
-var fill_all_cost = 1000;
+var fill_all_cost = 500;
 var fill_upgrade = false;
 var farm_seed_upgrade_cost = 10000;
 
