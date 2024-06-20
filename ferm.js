@@ -17,12 +17,12 @@ function selectBarrel(i) {
         user.seed.quantity -= barrels[i].storage;
         barrels[i].seed = user.seed.name;
         barrels[i].max = user.seed.fermMax;
-        barrels[i].sell = user.seed.fermVal;
+        barrels[i].sell = (user.seed.value * barrels[i].storage) * 30;
         loadBarrels()
         updateBag()
     }
     else {
-        console.log("Barrel Full")
+        console.log("Not enough Seeds")
     }
 }
 
@@ -43,12 +43,20 @@ function collectBarrel(i) {
 function fermentInt() {
     for (i = 0; i < barrels.length; i++) {
         if (barrels[i].seed != null ) {
+            barrels[i].value += 1;
             if (barrels[i].value < barrels[i].max) {
-                barrels[i].value += 1;
+                var progress;
+                progress = (barrels[i].value / barrels[i].max) * 100;
+                document.getElementById("b_progress" + i).style.height = progress + "%";
+                document.getElementById("b_progress" + i).style.width = "100%";
+                document.getElementById("b_progress" + i).style.backgroundColor = "#bcbddc";
+                document.getElementById("b_progress" + i).style.opacity = "0.7";
                 //console.log("Barrel " + i + " " + barrels[i].value + "/" + barrels[i].max)
             }
             else {
-                console.log("Barrel " + i + " ready for collect!")
+                document.getElementById("b_progress" + i).style.height = "100%";
+                document.getElementById("b_progress" + i).style.backgroundColor = "GreenYellow";
+                document.getElementById("b_progress" + i).style.opacity = "1";
             }
         }
     }
@@ -58,14 +66,15 @@ function loadBarrels() {
     var scr = document.getElementById("fermScr");
 
     scr.innerHTML = "";
+    var imgTxt;
     for (i = 0; i < barrels.length; i++) {
         if (barrels[i].seed == null) {
-            var progressTxt = "<progress class='barrel_prog' value='" + barrels[i].value + "' + max='" + barrels[i].max + "' id='ferm_prog" + i + "'></progress>";
-            scr.innerHTML += "<img src='images/add.png' class='barrel' onclick='selectBarrel(" + i + ")' id='barrel" + i + "'>";
+            imgTxt = "<p>Add 10 Seeds (Potatos, Carrots, Broccoli)</p>";
         }
         else {
-            scr.innerHTML += "<img src='images/" + barrels[i].seed + ".png' class='barrel' onclick='selectBarrel(" + i + ")' id='barrel" + i + "' onmouseover='collectBarrel(" + i + ")' >"// + progressTxt;
+            imgTxt = "<img class='seedBarrel' src='images/" + barrels[i].seed + ".png' onmouseover='collectBarrel(" + i + ")' id='barrel" + i + "'>";
         }
+        scr.innerHTML += '<div onclick="selectBarrel(' + i + ')" class="barrel"><div class="progressBar" id="b_progress' + i + '">' + imgTxt + '</div></div>';
     }
 }
 

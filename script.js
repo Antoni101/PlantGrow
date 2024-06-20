@@ -16,7 +16,7 @@ var shopOpen = false;
 var invOpen = false;
 var fill_all_cost = 500;
 var fill_upgrade = false;
-var farm_seed_upgrade_cost = 10000;
+var farm_seed_upgrade_cost = 7500;
 
 var user = {
     "money": 15.25,
@@ -43,6 +43,9 @@ function updateRank() {
     bar.max = user.max_xp;
     var rankTxt = document.getElementById("rank");
     if (user.xp >= user.max_xp) { //Rank Up
+        if (user.rank >= 5) {
+            document.getElementById("barrelBtn").innerHTML = "Ferment"
+        }
         user.max_xp = user.max_xp * 2.5;
         user.xp = 0;
         user.rank += 1;
@@ -386,21 +389,23 @@ function openHud(hud) {
         }
     }
     else if (hud == 4) {
-        if (ferm.scr == false) {
-            ferm.scr = true;
-            document.getElementById("fermScr").style.display = "Block";
-            document.getElementById("fermScr").style.transform = "Scale(1.1)";
-            setTimeout(function() {
-                document.getElementById("fermScr").style.transform = "Scale(1.0)";
-            },50);
-            loadBarrels()
-        }
-        else {
-            ferm.scr = false;
-            document.getElementById("fermScr").style.transform = "Scale(0.01)";
-            setTimeout(function() {
-                document.getElementById("fermScr").style.display = "None";
-            },100);
+        if (ferm.unlocked == true) {
+            if (ferm.scr == false) {
+                ferm.scr = true;
+                document.getElementById("fermScr").style.display = "Block";
+                document.getElementById("fermScr").style.transform = "Scale(1.1)";
+                setTimeout(function() {
+                    document.getElementById("fermScr").style.transform = "Scale(1.0)";
+                },50);
+                loadBarrels()
+            }
+            else {
+                ferm.scr = false;
+                document.getElementById("fermScr").style.transform = "Scale(0.01)";
+                setTimeout(function() {
+                    document.getElementById("fermScr").style.display = "None";
+                },100);
+            }
         }
     }
 }

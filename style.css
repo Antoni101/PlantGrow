@@ -213,7 +213,7 @@ button:active { transform: scale(0.95); }
     font-size: 15px;
     position: relative;
     top: 80vh;
-    left: 40%;
+    left: 36%;
     background-color: #a6bddb;
     border: 3px solid #1c9099;
 }
@@ -227,7 +227,7 @@ button:active { transform: scale(0.95); }
     top: 13%;
     left: 32%;
     height: 700px;
-    width: 700px;
+    width: 500px;
     background-color: Salmon;
     border: 4px solid Brown;
     opacity: 0.9;
@@ -240,9 +240,12 @@ button:active { transform: scale(0.95); }
 
 .barrel {
     display: inline-block;
-    height: 300px;
-    width: 300px; 
-    margin: 2%;
+    height: 400px;width: 400px; 
+    margin: 10%;
+    font-size: 50px;
+    text-align: center;
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 400;    
     border-radius: 10px;
     background-color: Peru;
     border: 4px solid Brown;
@@ -255,12 +258,9 @@ button:active { transform: scale(0.95); }
     opacity: 1.0;
 }
 
-.barrel_prog {
-    position: relative;
-    font-size: 25px;
-    left: 50%;
-    top: 90%;
-    transform: translateX(-50%);
+.seedBarrel {
+    height: 300px;
+    width: 300px;
 }
 
 

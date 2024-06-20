@@ -9,8 +9,7 @@ const potato = {
     "cost": 5,
     "seedGain": 4,
     "canFerm": true,
-    "fermMax": 10,
-    "fermVal": 55000
+    "fermMax": 500
 };
 
 const carrot = {
@@ -24,8 +23,7 @@ const carrot = {
     "cost": 10,
     "seedGain": 9,
     "canFerm": true,
-    "fermMax": 10,
-    "fermVal": 37500
+    "fermMax": 300
 };
 
 const corn = {
@@ -64,7 +62,8 @@ const pepper = {
     "rankReq": 4,
     "cost": 50,
     "seedGain": 8,
-    "canFerm": false
+    "canFerm": false,
+    "fermMax": 500
 };
 
 const tomato = {
@@ -103,7 +102,8 @@ const eggplant = {
     "rankReq": 6,
     "cost": 500,
     "seedGain": 3,
-    "canFerm": false
+    "canFerm": true,
+    "fermMax": 700
 };
 
 const cabbage = {
@@ -143,7 +143,8 @@ const broc = {
     "cost": 2000,
     "icon": "🥦",
     "seedGain": 3,
-    "canFerm": false
+    "canFerm": true,
+    "fermMax": 1000
 };
 
 
