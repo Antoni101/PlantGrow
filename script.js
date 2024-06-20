@@ -5,7 +5,7 @@ var seedGain = 5;
 var growing;
 var bag;
 var farm_upgrade_cost = 25;
-var farm_speed = 0.25;
+var farm_speed = 0.15;
 var farm_speed_cost = 50;
 var farmSize = 100;
 var farmLeft = 45;
@@ -14,7 +14,7 @@ var hudborder = "3px solid #1c9099";
 var upOpen = false;
 var shopOpen = false;
 var invOpen = false;
-var fill_all_cost = 250;
+var fill_all_cost = 100;
 var fill_upgrade = false;
 var farm_seed_upgrade_cost = 7500;
 
@@ -131,10 +131,10 @@ function loadUpgrades() {
 function upgradeValues() {
     if (user.money >= farm_seed_upgrade_cost) {
         for (i = 0; i < seeds.length; i++) {
-            seeds[i].value = seeds[i].value * 1.5;
+            seeds[i].value = seeds[i].value * 2;
         }
 
-        farm_seed_upgrade_cost = farm_seed_upgrade_cost * 3;
+        farm_seed_upgrade_cost = farm_seed_upgrade_cost * 2.5;
 
         loadShop()
         loadUpgrades()
@@ -157,7 +157,7 @@ function upgradeSpeed() {
         if (window.confirm("Warning, Upgrading the Farm wipes all seeds from the farm, Proceed?")) {
             user.money -= farm_speed_cost;
             farm_speed += 0.5;
-            farm_speed_cost = farm_speed_cost * 4.5;
+            farm_speed_cost = farm_speed_cost * 5;
             farm_speed_cost = farm_speed_cost.toFixed(2);
 
             loadFarm()
@@ -171,7 +171,7 @@ function upgradeFarm() {
         if (window.confirm("Warning, Upgrading Farm wipes all seeds from the farm, Proceed?")) {
             user.money -= farm_upgrade_cost;
             farmLvl += 1;
-            farm_upgrade_cost = farm_upgrade_cost * 4.5;
+            farm_upgrade_cost = farm_upgrade_cost * 5;
             farm_upgrade_cost = farm_upgrade_cost.toFixed(2);
             farmLeft -= 2;
             farmSize -= 5;
