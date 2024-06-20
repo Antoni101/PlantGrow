@@ -28,8 +28,8 @@ const carrot = {
 
 const corn = {
     "name": "corn",
-    "value": 85,
-    "speed": 25, // 15 Seconds
+    "value": 90,
+    "speed": 30, // 15 Seconds
     "expGain": 35,
     "equipped": false,
     "quantity": 0,
@@ -42,107 +42,107 @@ const corn = {
 const peas = {
     "name": "peas",
     "value": 20,
-    "speed": 12, // 300 Seconds
+    "speed": 12, // 12 Seconds
     "expGain": 28,
     "equipped": false,
     "quantity": 0,
     "rankReq": 3,
     "cost": 18.50,
-    "seedGain": 9,
+    "seedGain": 12,
     "canFerm": false
 };
 
 const pepper = {
     "name": "pepper",
-    "value": 35,
-    "speed": 20, // 15 Seconds
+    "value": 25,
+    "speed": 15, // 15 Seconds
     "expGain": 35,
     "equipped": false,
     "quantity": 0,
     "rankReq": 4,
-    "cost": 50,
-    "seedGain": 8,
+    "cost": 65,
+    "seedGain": 16,
     "canFerm": true,
     "fermMax": 300
 };
 
 const tomato = {
     "name": "tomato",
-    "value": 42,
-    "speed": 10, // 35 Seconds
+    "value": 30,
+    "speed": 25, // 35 Seconds
     "expGain": 40,
     "equipped": false,
     "quantity": 0,
     "rankReq": 5,
-    "cost": 80,
-    "seedGain": 20,
+    "cost": 100,
+    "seedGain": 25,
     "canFerm": false
 };
 
 const pickle = {
     "name": "pickle",
-    "value": 30,
-    "speed": 30, // 35 Seconds
-    "expGain": 80,
+    "value": 250,
+    "speed": 50, // 35 Seconds
+    "expGain": 380,
     "equipped": false,
     "quantity": 0,
     "rankReq": 5,
-    "cost": 80,
-    "seedGain": 8,
+    "cost": 500,
+    "seedGain": 4,
     "canFerm": false
 };
 
 const eggplant = {
     "name": "eggplant",
-    "value": 800,
-    "speed": 40, // 40 Seconds
+    "value": 1250,
+    "speed": 70, // 40 Seconds
     "expGain": 480,
     "equipped": false,
     "quantity": 0,
     "rankReq": 6,
     "cost": 500,
-    "seedGain": 3,
+    "seedGain": 2,
     "canFerm": true,
     "fermMax": 200
 };
 
 const cabbage = {
     "name": "cabbage",
-    "value": 200,
-    "speed": 34, // 34 Seconds
+    "value": 100,
+    "speed": 45, // 34 Seconds
     "expGain": 600,
     "equipped": false,
     "quantity": 0,
     "rankReq": 7,
     "cost": 100,
-    "seedGain": 16,
+    "seedGain": 36,
     "canFerm": false
 };
 
 const onion = {
     "name": "onion",
-    "value": 2405,
-    "speed": 175, // 175 Seconds
-    "expGain": 5000,
+    "value": 15000,
+    "speed": 500, // 175 Seconds
+    "expGain": 10000,
     "equipped": false,
     "quantity": 0,
     "rankReq": 9,
-    "cost": 1000,
-    "seedGain": 3,
+    "cost": 450,
+    "seedGain": 1,
     "canFerm": false
 };
 
 const broc = {
     "name": "broccoli",
-    "value": 10000,
-    "speed": 200, // 200 Seconds
-    "expGain": 10000,
+    "value": 8500,
+    "speed": 300, // 300 Seconds
+    "expGain": 6000,
     "equipped": false,
     "quantity": 0,
     "rankReq": 10,
-    "cost": 2000,
+    "cost": 2500,
     "icon": "🥦",
-    "seedGain": 3,
+    "seedGain": 2,
     "canFerm": true,
     "fermMax": 300
 };
@@ -150,26 +150,26 @@ const broc = {
 
 const cherries = {
     "name": "cherries",
-    "value": 350,
-    "speed": 30, // 50 Seconds
-    "expGain": 300,
+    "value": 120,
+    "speed": 60, // 50 Seconds
+    "expGain": 900,
     "equipped": false,
     "quantity": 0,
     "rankReq": 12,
-    "cost": 2000,
-    "seedGain": 15,
+    "cost": 880,
+    "seedGain": 49,
     "canFerm": false
 };
 
 const cauli = {
     "name": "cauliflower",
-    "value": 30000,
+    "value": 4500,
     "speed": 500, // 500 Seconds
     "expGain": 10000,
     "equipped": false,
     "quantity": 0,
     "rankReq": 13,
-    "cost": 10000,
+    "cost": 9600,
     "seedGain": 5,
     "canFerm": false
 };
