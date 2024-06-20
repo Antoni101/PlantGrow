@@ -69,7 +69,7 @@ function loadBarrels() {
     var imgTxt;
     for (i = 0; i < barrels.length; i++) {
         if (barrels[i].seed == null) {
-            imgTxt = "<p>Add 10 Seeds (Potatos, Carrots, Broccoli)</p>";
+            imgTxt = "<p>Add 10 Seeds (Potatos, Carrots, Eggplant, Broccoli)</p>";
         }
         else {
             imgTxt = "<img class='seedBarrel' src='images/" + barrels[i].seed + ".png' onmouseover='collectBarrel(" + i + ")' id='barrel" + i + "'>";
@@ -101,7 +101,7 @@ function upgradeFerm() {
             user.money -= ferm.cost;
             ferm.cost = ferm.cost * 2;
             ferm.txt = "+1 Barrel"
-            ferm.unlocked == true;
+            ferm.unlocked = true;
             barrels.push({
                 lvl: 1,
                 storage: 10,
