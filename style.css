@@ -1,8 +1,9 @@
 html, body {
     /* background-image: url("images/background.gif"); */
-    background-color: #ece2f0;
+    background-color: #dac292;
     background-size: cover;
 }
+
 
 button {
     font-family: "Fira Sans", sans-serif;
@@ -45,10 +46,10 @@ button:active { transform: scale(0.95); }
     font-weight: 600;
     font-size: 100px;
     position: relative;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 40%;
+    background-color: #dfd3c3;
     margin-top: 10%;
-    border: None;
+    border: 5px solid #c7b198;
     border-radius: 10px;
     opacity: 0.8;
     transition: 0.2s;
@@ -56,12 +57,14 @@ button:active { transform: scale(0.95); }
 }
 
 #startBtn:hover {
-    font-size: 110px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     opacity: 1;
+    transform: scale(1.1);
 }
 
-#startBtn:active { font-size: 105px; }
+#startBtn:active { 
+    transform: scale(0.9);
+}
 
 #money {
     font-family: "Fira Sans", sans-serif;
@@ -99,7 +102,7 @@ button:active { transform: scale(0.95); }
     top: 30%;
     left: 45%;
     transform: translate(-50%, -50%);
-    border: 10px inset #9ecae1;
+    border: 15px inset #8b6f47;
     display: None;
     grid-template-columns: '';
     border-radius: 5px;
@@ -122,12 +125,11 @@ button:active { transform: scale(0.95); }
     top: 65%;
     width: 350px;
     height: 300px;
-    border-radius: 20px;
+    border-radius: 10px;
     background-color: DimGray;
     overflow: auto;
     left: 7%;
     border: 3px solid DarkSlateGray;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     transition: 0.2s;
 }
 
@@ -156,12 +158,12 @@ button:active { transform: scale(0.95); }
 .plot {
     width: 100px;
     height: 100px;
-    background-color: #deebf7;
+    background-color: #cab577;
     opacity: 0.7;
     transition: 0.3s;
     font-size: 70px;
     text-align: center;
-    border: 2px solid #9ecae1;
+    border: 2px solid #8b6f47;
 }
 .plot:hover {
     opacity: 1;
@@ -206,6 +208,8 @@ button:active { transform: scale(0.95); }
 }
 
 .progressBar { transition: 0.7s; }
+
+
 
 .hud {
     width: 100px;

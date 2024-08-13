@@ -9,8 +9,8 @@ var farm_speed = 0.15;
 var farm_speed_cost = 50;
 var farmSize = 100;
 var farmLeft = 45;
-var hudbgcolor = "#a6bddb";
-var hudborder = "3px solid #1c9099";
+var hudbgcolor = "#c1946a";
+var hudborder = "3px solid #b9936c";
 var upOpen = false;
 var shopOpen = false;
 var invOpen = false;
@@ -271,7 +271,7 @@ function collectPlot(plotNum) {
         user.xp += farmArray[plotNum].expGain;
         farmArray[plotNum].value = 0;
         farmArray[plotNum].ready = false;
-        document.getElementById("progress" + plotNum).style.backgroundColor = "#deebf7";
+        document.getElementById("progress" + plotNum).style.backgroundColor = "#cab577";
         document.getElementById("progress" + plotNum).innerHTML = "";
 
         loadShop()
@@ -343,7 +343,7 @@ function farmGrow() {
                 progress = (farmArray[i].speed / farmArray[i].max) * 100;
                 document.getElementById("progress" + i).style.height = progress + "%";
                 document.getElementById("progress" + i).style.width = "100%";
-                document.getElementById("progress" + i).style.backgroundColor = "#bcbddc";
+                document.getElementById("progress" + i).style.backgroundColor = "#b5e7a0";
                 document.getElementById("progress" + i).style.opacity = "0.7";
 
             }
